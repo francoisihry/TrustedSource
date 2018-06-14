@@ -1,4 +1,5 @@
 # TrustedSource
+This script allows you to submit an URL to [TrustedSource](https://trustedsource.org/sources/index.pl) and displays the result.
 
 ## Usage:
 ```
