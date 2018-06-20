@@ -9,6 +9,8 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 TRUSTED_SOURCE_URL = "https://www.trustedsource.org/en/feedback/url"
 
@@ -38,6 +40,8 @@ def trusted_source():
     url.send_keys(args.url)
     check_url_button = driver.find_element_by_xpath("//input[@value='Check URL']")
     check_url_button.click()
+    element_present = EC.presence_of_element_located((By.CLASS_NAME, 'result-table'))
+    WebDriverWait(driver, 20).until(element_present)
     soup = BeautifulSoup(driver.page_source, "html5lib")
     result_table = soup.find("table", {"class": "result-table"})
     rows = list()
