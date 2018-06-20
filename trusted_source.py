@@ -38,7 +38,7 @@ def trusted_source():
     url.send_keys(args.url)
     check_url_button = driver.find_element_by_xpath("//input[@value='Check URL']")
     check_url_button.click()
-    soup = BeautifulSoup(driver.page_source, "lxml")
+    soup = BeautifulSoup(driver.page_source, "html5lib")
     result_table = soup.find("table", {"class": "result-table"})
     rows = list()
     for row in result_table.findAll("tr"):
